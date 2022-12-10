@@ -1,5 +1,14 @@
 -- asdfghj do not skid bitch
 
+local Webhook = {}
+
+function Webhook.send(url, message)
+	webhook({
+		url = url,
+		content = message
+	})
+end
+
 local BotHandler = {}
 
 function BotHandler.warp(world, id, after, interval, delay)
@@ -29,7 +38,7 @@ function BotHandler.warp(world, id, after, interval, delay)
         warpTries = warpTries + 1
 
         if getBot().world == world:upper() then break end
-        
+
         sleep(interval)
     end
 
