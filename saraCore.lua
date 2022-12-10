@@ -15,7 +15,6 @@ function BotHandler.warp(world, id, after, interval, delay)
 
     while getBot().world ~= world:upper() do
 
-        if getBot().world == world:upper() then break end
 
         if warpTries == 50 then break end
 
@@ -29,6 +28,8 @@ function BotHandler.warp(world, id, after, interval, delay)
 
         warpTries = warpTries + 1
 
+        if getBot().world == world:upper() then break end
+        
         sleep(interval)
     end
 
