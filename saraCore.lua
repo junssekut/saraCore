@@ -94,5 +94,6 @@ end
 return {
 	BotHandler = BotHandler,
 	Webhook = Webhook,
-	Date = Date
+	Date = Date,
+	TableUtils = TableUtils
 }
