@@ -3,10 +3,16 @@
 local TableUtils = {}
 
 function TableUtils.geti(table_value, value)
-	for i, v in pairs(table_value) do
-		if v == value then return i end
+	local counter = 1
+
+	for _, v in pairs(table_value) do
+		if v == value then 
+			return counter
+		end
+
+		counter = counter + 1
 	end
-	
+
 	return nil
 end
 
