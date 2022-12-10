@@ -1,5 +1,7 @@
 -- asdfghj do not skid bitch
 
+local math_floor = _G.math.floor
+
 local Date = {}
 
 function Date.format(number)
