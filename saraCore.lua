@@ -1,9 +1,9 @@
 -- asdfghj do not skid bitch
 
-local BotHandler = require('modules.handler.BotHandler')
-local Date = require('modules.date.Date')
-local TableUtils = require('modules.utils.TableUtils')
-local Webhook = require('modules.webhook.Webhook')
+local BotHandler = assert(load(request('GET', 'https://raw.githubusercontent.com/junssekut/saraCore/main/modules/handler/BotHandler.lua'))())
+local Date = assert(load(request('GET', 'https://raw.githubusercontent.com/junssekut/saraCore/main/modules/date/Date.lua'))())
+local TableUtils = assert(load(request('GET', 'https://raw.githubusercontent.com/junssekut/saraCore/main/modules/utils/TableUtils.lua'))())
+local Webhook = assert(load(request('GET', 'https://raw.githubusercontent.com/junssekut/saraCore/main/modules/webhook/Webhook.lua'))())
 
 return {
 	BotHandler = BotHandler,
