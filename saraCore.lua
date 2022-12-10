@@ -1,5 +1,15 @@
 -- asdfghj do not skid bitch
 
+local TableUtils = {}
+
+function TableUtils.geti(table_value, value)
+	for i, v in pairs(table_value) do
+		if v == value then return i end
+	end
+	
+	return nil
+end
+
 local Webhook = {}
 
 function Webhook.send(url, message)
@@ -33,7 +43,7 @@ function BotHandler.warp(world, id, after, interval, delay)
     sleep(delay)
 
     while getBot().world ~= world:upper() do
-    	
+
         if warpTries == 50 then break end
 
         if warpTries % after == 0 then
