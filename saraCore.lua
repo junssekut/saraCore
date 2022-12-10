@@ -9,6 +9,16 @@ function Webhook.send(url, message)
 	})
 end
 
+local Date = {}
+
+function Date.format(number)
+	return ("%d:%02d:%02d:%02d"):format(
+		math.floor(number / 86400), 
+		math.floor((number % 86400) / 3600), 
+		math.floor((number % 3600) / 60), 
+		math.floor(number % 60))
+end
+
 local BotHandler = {}
 
 function BotHandler.warp(world, id, after, interval, delay)
@@ -67,5 +77,7 @@ function BotHandler.warp(world, id, after, interval, delay)
 end
 
 return {
-	BotHandler = BotHandler
+	BotHandler = BotHandler,
+	Webhook = Webhook,
+	Date = Date
 }
