@@ -10,9 +10,9 @@ function Date.format(number)
 		math.floor(number % 60))
 end
 
-local BotHandler = {}
+local WorldHandler = {}
 
-function BotHandler.warp(world, id)
+function WorldHandler.warp(world, id)
     world = world or nil
     id = id or ""
 
@@ -84,8 +84,29 @@ function Webhook.send(url, message)
 	})
 end
 
+local InventoryHandler = {}
+
+function InventoryHandler.get(item_id)
+	item_id = item_id or nil
+
+	assert(type(item_id) == 'number', 'expected type: number, got: ' .. type(item_id))
+
+	local inventory = getInventory()
+
+	for i = 1, #inventory do
+		local item = inventory[i]
+
+		if item.id == item_id then
+			return item.name
+		end
+	end
+
+	return tostring(item_id)
+end
+
 return {
-	BotHandler = BotHandler,
+	WorldHandler = WorldHandler,
+	InventoryHandler = InventoryHandler,
 	Date = Date,
 	TableUtils = TableUtils,
 	Webhook = Webhook
