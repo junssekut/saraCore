@@ -16,19 +16,19 @@ function BotHandler.warp(world, id)
     world = world or nil
     id = id or ""
 
-    local warpTries = 0
+    local warp_tries = 0
 
     sleep(250)
 
     while getBot().world ~= world:upper() do
 
-        if warpTries == 50 then break end
+        if warp_tries == 50 then break end
 
-        if warpTries % 6 == 0 then
+        if warp_tries % 6 == 0 then
             sendPacket(3, ("action|join_request\nname|%s\ninvitedWorld|0"):format(id == '' and world or (world .. '|' .. id)))
         end
 
-        warpTries = warpTries + 1
+        warp_tries = warp_tries + 1
 
         if getBot().world == world:upper() then break end
 
@@ -36,19 +36,19 @@ function BotHandler.warp(world, id)
     end
 
     if id ~= "" then 
-        warpTries = 0
+        warp_tries = 0
 
         while getTile(math.floor(getBot().x / 32), math.floor(getBot().y / 32)).fg == 6 do
 
             if getTile(math.floor(getBot().x / 32), math.floor(getBot().y / 32)).fg ~= 6 then break end
 
-            if warpTries == 50 then break end
+            if warp_tries == 50 then break end
 
-            if warpTries % 6 == 0 then
+            if warp_tries % 6 == 0 then
                 sendPacket(3, ("action|join_request\nname|%s|%s\ninvitedWorld|0"):format(world, id))
             end
 
-            warpTries = warpTries + 1
+            warp_tries = warp_tries + 1
 
             sleep(5000)
         end
