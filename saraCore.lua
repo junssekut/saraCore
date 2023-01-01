@@ -1,47 +1,38 @@
 -- asdfghj do not skid bitch
 
-local math_floor = _G.math.floor
-
 local Date = {}
 
 function Date.format(number)
-	return ("%d:%02d:%02d:%02d"):format(
-		math_floor(number / 86400), 
-		math_floor((number % 86400) / 3600), 
-		math_floor((number % 3600) / 60), 
-		math_floor(number % 60))
+	return string.format("%d:%02d:%02d:%02d",
+		math.floor(number / 86400), 
+		math.floor((number % 86400) / 3600), 
+		math.floor((number % 3600) / 60), 
+		math.floor(number % 60))
 end
 
 local BotHandler = {}
 
-function BotHandler.warp(world, id, after, interval, delay)
-    world = world or "exit"
+function BotHandler.warp(world, id)
+    world = world or nil
     id = id or ""
-    after = after or 6
-    interval = interval or 5000
-    delay = delay or 250
 
     local warpTries = 0
 
-    sleep(delay)
+    sleep(250)
 
     while getBot().world ~= world:upper() do
 
         if warpTries == 50 then break end
 
-        if warpTries % after == 0 then
-        	if id == "" then
-            	sendPacket(3, ("action|join_request\nname|%s\ninvitedWorld|0"):format(world))
-	        else
-	            sendPacket(3, ("action|join_request\nname|%s|%s\ninvitedWorld|0"):format(world, id))
-	        end
+        if warpTries % 6 == 0 then
+            sendPacket(3, ("action|join_request\nname|%s\ninvitedWorld|0"):format(id == '' and world or (world .. '|' .. id)))
         end
 
         warpTries = warpTries + 1
 
         if getBot().world == world:upper() then break end
 
-        sleep(interval)
+        sleep(5000)
     end
 
     if id ~= "" then 
@@ -53,17 +44,17 @@ function BotHandler.warp(world, id, after, interval, delay)
 
             if warpTries == 50 then break end
 
-            if warpTries % after == 0 then
+            if warpTries % 6 == 0 then
                 sendPacket(3, ("action|join_request\nname|%s|%s\ninvitedWorld|0"):format(world, id))
             end
 
             warpTries = warpTries + 1
 
-            sleep(interval)
+            sleep(5000)
         end
     end
 
-    sleep(delay)
+    sleep(250)
 
     return getBot().world == world:upper()
 end
