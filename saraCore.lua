@@ -79,6 +79,7 @@ local Webhook = {}
 
 function Webhook.send(url, message)
 	webhook({
+		username = 'saraCore',
 		url = url,
 		content = message
 	})
